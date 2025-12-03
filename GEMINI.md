@@ -30,10 +30,18 @@ This document outlines mandatory operational guidelines, constraints, and best p
 *   Do not guarantee code will work without testing; remind users to test generated code in a development environment.
 *   Do not use humorous or overly casual status messages.
 *   Do not execute API calls that modify data (e.g., create, update, delete operations); ONLY allow read-only API calls (e.g., search, get).
+*   Do not execute API calls that modify data (e.g., create, update, delete operations); ONLY allow read-only API calls (e.g., search, get).
 
 #### 1.2. API Versioning
 
-ALWAYS dynamically determine the latest Google Ads API version by performing a web search at the start of any task involving API versioning. Use this latest version unless explicitly specified otherwise by the user. Explicitly state the API version being used in generated code or when discussing API interactions. All generated Python code and GAQL queries MUST import and utilize this determined latest version (e.g., `google.ads.googleads.vXX`).
+**MANDATORY FIRST STEP:** At the beginning of any task that involves the Google Ads API, you **MUST** perform a `google_web_search` to determine the latest stable version of the Google Ads API.
+
+*   **Search Query:** Use a query like "latest google ads api version".
+*   **Verification:** The search result should point to the official Google Ads API documentation on `developers.google.com`.
+*   **Usage:** This version **MUST** be used for all subsequent API calls, code generation, and documentation references for the remainder of the task. For example, all Python imports and GAQL queries must use this determined version (e.g., `google.ads.googleads.vXX`).
+*   **State the version:** You should explicitly state the API version you are using to the user.
+
+This is a strict operational requirement. Failure to adhere to this rule will result in incorrect and outdated responses.
 
 ---
 
@@ -62,7 +70,16 @@ For consistent execution and dependency management:
 
 ### 3. API INTERACTION & WORKFLOWS
 
-#### 3.1. GOOGLE ADS API BEST PRACTICES
+#### 3.1. API Versioning
+
+**MANDATORY FIRST STEP:** At the beginning of any task that involves the Google Ads API, you **MUST** perform a `google_web_search` to determine the latest stable version of the Google Ads API.
+
+*   **Search Query:** Use a query like "latest google ads api version".
+*   **Verification:** The search result should point to the official Google Ads API documentation on `developers.google.com`.
+*   **Usage:** This version **MUST** be used for all subsequent API calls, code generation, and documentation references for the remainder of the task. For example, all Python imports and GAQL queries must use this determined version (e.g., `google.ads.googleads.vXX`).
+*   **State the version:** You should explicitly state the API version you are using to the user.
+
+This is a strict operational requirement. Failure to adhere to this rule will result in incorrect and outdated responses.
 
 *   **Search Operations:** Use `SearchGoogleAdsStream` objects (e.g., `SearchGoogleAdsStreamRequest`, NOT `SearchGoogleAdsRequest`).
 *   **Change History:** Use `change_status` resources.
@@ -157,10 +174,12 @@ The AI Assistant uses ONLY the following tools:
 *   **`run_shell_command`**
     *   **Description:** Executes shell commands.
     *   **Policy:**
+        *   **Google Ads API Mutate Prohibition:** Before executing any Python script that interacts with the Google Ads API, you MUST first inspect the script's content. If the script contains any service calls that modify data (e.g., any method named `mutate`, `mutate_campaigns`, `mutate_asset_groups`, etc.), you MUST NOT execute the script. You must instead explain to the user that you have created the script but cannot run it due to the explicit prohibition on mutate operations.
         *   For `ModuleNotFoundError` in Python, attempt `pip install <module_name>`. If error persists, specify Python interpreter path.
         *   Automatically attempt `pip install <module_name>` for `ModuleNotFoundError`.
         *   Explain file system modifying commands BEFORE execution.
         *   Retrieve script parameters (e.g., `customer_id`) from `customer_id.text`; NEVER ask the user.
+        *   **Displaying Non-Executable Commands:** When providing an example command that should *not* be executed by the assistant (such as a mutate operation or a template for the user to fill in), you MUST format it as a code block within a text response. The `run_shell_command` tool MUST NOT be used to display or wrap non-executable commands.
 
 *   **`write_file`**
     *   **Description:** Writes content to a file.
