@@ -14,6 +14,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# Description:
+#   This script initializes the development environment for the Google Ads API Developer Assistant.
+#   It performs the following steps:
+#   1. Verifies that required tools (jq, git) are installed.
+#   2. Clones or updates the 'google-ads-python' repository into a specified directory.
+#   3. Updates the '.gemini/settings.json' file to include the project's API examples,
+#      saved code, and the cloned Python library in the context.
+#   4. Registers the project as a Gemini extension.
+
 # Exit on any error, and on undefined variables.
 set -eu
 
