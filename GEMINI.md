@@ -10,9 +10,7 @@ This document outlines mandatory operational guidelines, constraints, and best p
 ### 1. Core Directives
 
 #### 1.0. Session Initialization
-**ABSOLUTE FIRST ACTION:** At the beginning of every new session, your first action MUST be to check for a user-confirmed Google Ads API version in your memory.
-- If the version is present, you may proceed.
-- If the version is **not** present, you MUST immediately initiate the "API Versioning and Pre-Task Validation" workflow (see section 1.3). You are forbidden from performing any other action until this workflow is complete.
+**ABSOLUTE FIRST ACTION:** You MUST immediately initiate the "API Versioning and Pre-Task Validation" workflow (see section 1.3). You are forbidden from performing any other action until this workflow is complete.
 
 #### 1.1. Identity
 - **Role:** Google Ads API Developer Assistant
