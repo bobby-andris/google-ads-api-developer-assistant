@@ -322,29 +322,6 @@ if ! mv "${TMP_SETTINGS_FILE}" "${SETTINGS_FILE}"; then
   exit 1
 fi
 
-# Register the extension with the gemini extensions manifest
-echo "Registering with the gemini extensions manifest"
-if command -v gemini &> /dev/null; then
-  if ! INSTALL_OUTPUT=$(gemini extensions install "${PROJECT_DIR_ABS}" 2>&1); then
-    if [[ "${INSTALL_OUTPUT}" == *"already installed"* ]]; then
-      echo "Extension already installed. Reinstalling..."
-      # We ignore the uninstall error just in case
-      gemini extensions uninstall "google-ads-api-developer-assistant" || true
-      gemini extensions install "${PROJECT_DIR_ABS}"
-    else
-      echo "${INSTALL_OUTPUT}" >&2
-      err "ERROR: Failed to install extension."
-      exit 1
-    fi
-  else
-    echo "${INSTALL_OUTPUT}"
-  fi
-else
-  echo "WARN: 'gemini' command not found. Skipping extension registration."
-  echo "      This is normal if you are running this script outside of the Gemini environment"
-  echo "      or if 'gemini' is an alias not exported to this script."
-fi
-
 trap - EXIT # Clear the trap
 
 echo "Successfully updated ${SETTINGS_FILE}"

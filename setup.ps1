@@ -216,34 +216,7 @@ catch {
     exit 1
 }
 
-# --- Register Extension ---
-Write-Host "Registering with the gemini extensions manifest"
-if (Get-Command gemini -ErrorAction SilentlyContinue) {
-    try {
-        # Redirect stderr to stdout to capture everything
-        $InstallOutput = & gemini extensions install "$ProjectDirAbs" 2>&1 | Out-String
-        if ($LASTEXITCODE -ne 0) {
-             if ($InstallOutput -match "already installed") {
-                 Write-Host "Extension already installed. Reinstalling..."
-                 gemini extensions uninstall "google-ads-api-developer-assistant" 2>&1 | Out-Null
-                 gemini extensions install "$ProjectDirAbs"
-             } else {
-                 Write-Error $InstallOutput
-                 Write-Error "ERROR: Failed to install extension."
-                 exit 1
-             }
-        } else {
-            Write-Host $InstallOutput
-        }
-    }
-    catch {
-        Write-Warning "An unexpected error occurred during extension registration: $_"
-    }
-} else {
-    Write-Warning "'gemini' command not found. Skipping extension registration."
-    Write-Warning "      This is normal if you are running this script outside of the Gemini environment"
-    Write-Warning "      or if 'gemini' is not in your PATH."
-}
+
 
 Write-Host "Setup complete."
 Write-Host ""
