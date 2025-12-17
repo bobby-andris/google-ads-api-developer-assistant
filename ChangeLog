@@ -12,5 +12,8 @@
 - Modified update.sh to work with Linux and macOS.
 - Added PowerShell scripts for Windows.
 - Removed extension installation to manifest since it regularly hangs.
+- Modified logic in setup and update scripts.
+- Added tests for setup and update scripts.
+
 
 
