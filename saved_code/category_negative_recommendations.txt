@@ -1,0 +1,67 @@
+### Allied Brass - Category-Aware Negative Recommendations ###
+### Rules: High Spend (> 0), Zero ROAS, grouped by BU ###
+
+--- BUSINESS UNIT: Tst ---
+[ allied brass ]
+[ allied brass towel bars ]
+[ brass paper towel holder ]
+[ mid century modern coat rack ]
+[ shower squeegee ]
+[ toilet paper stand ]
+[ valet rod ]
+[ valet rods ]
+[ vintage hand towel holder ]
+
+--- BUSINESS UNIT: Freestanding Tp Holder ---
+[ stand alone toilet paper holder oil rubbed bronze ]
+
+--- BUSINESS UNIT: Vertical Towel Bars ---
+[ allied brass com ]
+
+--- BUSINESS UNIT: Wall Mounted Towel Bars ---
+[ allied brass com ]
+[ allied brass towel bars ]
+[ chrome towel shelf ]
+[ polished nickel towel rack ]
+[ solid brass towel bar ]
+[ towel rack and bar ]
+[ unlacquered brass towel rack ]
+[ valsan towel racks ]
+
+--- BUSINESS UNIT: Bathroom Set Accessories ---
+[ hair dryer holder ]
+
+--- BUSINESS UNIT: Towel Shelves ---
+[ brass towel holder wall mount ]
+[ unlacquered brass towel rack ]
+
+--- BUSINESS UNIT: Garment Rods ---
+[ closet hardware accessories ]
+[ polished nickel valet rod ]
+[ retractable valet rod ]
+[ valet rod ]
+[ valet rod closet ]
+[ valet rods ]
+
+--- BUSINESS UNIT: Tp Holder With Glass Shelf ---
+[ crystal toilet paper holder ]
+
+--- BUSINESS UNIT: Vanity Towel Stand ---
+[ hand towel rack stand ]
+
+--- BUSINESS UNIT: Paper Towel Holders ---
+[ marble paper towel holder ]
+[ unlacquered brass paper towel holder ]
+
+--- BUSINESS UNIT: Freestanding Towel Stand ---
+[ pool outdoor towel rack ]
+
+--- BUSINESS UNIT: Tst #2 ---
+[ allied brass ]
+
+--- BUSINESS UNIT: Wall Mounted Make Up Mirrors ---
+[ brushed brass makeup mirror ]
+
+--- BUSINESS UNIT: Double Glass Shelf With Towel Bar ---
+[ bathroom glass shelves with towel bar ]
+

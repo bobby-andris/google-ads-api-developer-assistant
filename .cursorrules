@@ -1,0 +1,110 @@
+# Google Ads API Developer Assistant — Allied Brass Rules
+
+## Product mapping and parent-product rollups
+
+### One-time setup (already completed)
+
+1. **Product mapping CSV exists at**: `saved_csv/merchant_center_product_mapping.csv`
+   - Contains 87,901 products from Merchant Center API
+   - Includes `item_group_id` (99.5% coverage) for parent-product rollups
+   - Fields: item_id, item_group_id, title, brand, custom_label_0-4, product_type, price, link, image_link, etc.
+   - **Why**: Google Ads API's `shopping_product` resource does NOT expose `item_group_id`
+
+2. **Python merge utility exists at**: `saved_code/merge_with_product_mapping.py`
+   - Purpose: Automatically join Google Ads API performance data with Merchant Center product mapping
+   - Creates parent-product rollups (aggregates variants by item_group_id)
+   - Calculates derived metrics: ROAS, avg_cpc, CTR, conversion_rate
+
+### Workflow for EVERY product-level performance report
+
+When Gemini generates SKU-level performance data (e.g., Prompt 6/7 from playbook):
+
+**ALWAYS run the merge script immediately after:**
+
+```bash
+python saved_code/merge_with_product_mapping.py \
+    --performance saved_csv/[GEMINI_OUTPUT_FILE].csv \
+    --output saved_csv/parent_product_rollup_[SUFFIX].csv \
+    --rollup-by item_group_id
+```
+
+**DO NOT:**
+- Manually join in Google Sheets (XLOOKUP/pivot)
+- Ask user to do manual joins
+- Skip the merge step
+
+**Example:**
+
+```bash
+# After Gemini creates: saved_csv/product_performance_last30.csv
+python saved_code/merge_with_product_mapping.py \
+    --performance saved_csv/product_performance_last30.csv \
+    --output saved_csv/parent_product_rollup_last30.csv \
+    --rollup-by item_group_id
+```
+
+### Alternative rollup dimensions
+
+You can rollup by any dimension, not just `item_group_id`:
+
+```bash
+# By product type (category analysis):
+--rollup-by product_type
+
+# By brand:
+--rollup-by brand
+
+# By custom label:
+--rollup-by custom_label_0
+```
+
+### When to refresh product mapping
+
+The product mapping CSV is static. Refresh it when:
+
+- Catalog changes significantly (new products, discontinuations)
+- Custom labels are updated in Merchant Center
+- User explicitly requests a refresh
+
+**Refresh command** (from profit-pilot repo):
+
+```bash
+cd /Users/bobby/Documents/GitHub/profit-pilot
+poetry run python scripts/export_merchant_center_product_mapping.py \
+    --customer-id 6253381786 \
+    --output /Users/bobby/Documents/GitHub/google-ads-api-developer-assistant/saved_csv/merchant_center_product_mapping.csv
+```
+
+### Key insight
+
+With 85k+ SKUs and ~28 variants per parent product, SKU-level data is too fragmented to act on. Always create parent-product rollups using the merge script to turn thousands of rows into actionable insights.
+
+### Automatic metrics in rollup output
+
+The merge script automatically calculates:
+
+- `ROAS`: conversions_value / (cost_micros / 1,000,000)
+- `avg_cpc`: (cost_micros / 1,000,000) / clicks
+- `CTR`: (clicks / impressions) × 100
+- `conversion_rate`: (conversions / clicks) × 100
+
+Results are sorted by `metrics.conversions_value` desc (top revenue drivers first).
+
+### Error handling
+
+If `saved_csv/merchant_center_product_mapping.csv` is missing, the script will display instructions for regenerating it from the profit-pilot repo.
+
+### Reporting and Documentation Rules
+
+**ALWAYS update the Strategic Ads Report:**
+After completing a prompt and generating a report (e.g., Waste Analysis, Product Winners), you MUST update `saved_code/ALLIED_BRASS_STRATEGIC_ADS_REPORT.md` with:
+- New high-level findings.
+- Strategic insights relevant to an executive/CEO.
+- Updated account structure or tactical recommendations.
+
+**Script Organization & Documentation:**
+- Every Python script created for analysis MUST be saved in `saved_code/` with a descriptive name.
+- New scripts MUST be added to the "Analysis Toolbox" table in the Strategic Report.
+- ALWAYS use `poetry run python` for execution.
+
+The report should remain centered on decision-making and revenue growth.

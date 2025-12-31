@@ -1,0 +1,33 @@
+### Allied Brass - Search Campaign Action List ###
+### Foundation: 90-Day Efficiency Audit ###
+
+--- PHASE 1: IMMEDIATE REMOVALS (The Bleeders) ---
+- REMOVE [EXACT] brass grab bars (Spend: , ROAS: 0.0)
+- REMOVE [EXACT] brass toilet paper holder (Spend: , ROAS: 0.0)
+- REMOVE [EXACT] glass mounted towel bar (Spend: , ROAS: 0.0)
+- REMOVE [EXACT] pull down clothes rod (Spend: , ROAS: 0.0)
+- REMOVE [EXACT] recessed toilet paper holder (Spend: , ROAS: 0.0)
+- REMOVE [EXACT] retractable pullout garment rod (Spend: , ROAS: 0.0)
+- REMOVE [EXACT] shower door handles (Spend: , ROAS: 0.0)
+- REMOVE [EXACT] unlacquered brass grab bar (Spend: , ROAS: 0.0)
+- REMOVE [EXACT] valet rod closet (Spend: , ROAS: 0.0)
+- REMOVE [EXACT] valet rods (Spend: , ROAS: 0.0)
+- REMOVE [PHRASE] avondale decor (Spend: , ROAS: 0.0)
+- REMOVE [PHRASE] brass paper towel holder (Spend: , ROAS: 0.0)
+- REMOVE [PHRASE] unlacquered brass rod (Spend: , ROAS: 0.0)
+
+--- PHASE 2: MATCH TYPE TIGHTENING ---
+- TIGHTEN allied brass reviews (Phrase -> Exact) to control waste
+- TIGHTEN avondale decor llc (Phrase -> Exact) to control waste
+- TIGHTEN brass toilet paper holder (Phrase -> Exact) to control waste
+- TIGHTEN solid brass shower curtain rod (Phrase -> Exact) to control waste
+- TIGHTEN towel rack (Phrase -> Exact) to control waste
+
+--- PHASE 3: THE "MATTE BLACK" GAP (New Additions) ---
+- ADD [ matte black towel bar ] (Exact Match)
+- ADD [ matte black bathroom mirror ] (Exact Match)
+- ADD [ matte black toilet paper holder ] (Exact Match)
+Note: Target ROAS for these should be 4.5 based on Shopping Alpha performance.
+
+--- PHASE 4: LANDING PAGE TRIAGE ---
+- FIX [ valet rods ] Ad Groups: Point to specific SKU landing pages, not collections.
